@@ -1,0 +1,24 @@
+{%extends 'blog/layout.html'%}
+{%block content%}
+<form action="/blog/login/" method=post>
+{%csrf_token%}
+<input type=hidden name=url value="{{url}}">
+<div class="login">
+<div class="form_controls">
+<label>Username:</lable>
+<input name="username" value="{{request.username}}">
+</div>
+
+<div class="form_controls">
+<label>Password:</lable>
+<input type=password name="password" value="{{request.password}}">
+</div>
+
+<div class="form_controls">
+
+<input type=submit  value="Login">
+</div>
+
+</div>
+</form>
+{%endblock%}
