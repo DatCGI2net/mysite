@@ -16,8 +16,36 @@ Including another URLconf
 """
 from django.conf.urls import include,url
 from django.contrib import admin
+from blog import views
+from blog.forms import BootstrapAuthenticationForm
+
+
 
 urlpatterns = [
-	url(r'^',include('blog.urls')),
+	url(r'^login/$',
+        'django.contrib.auth.views.login',
+        {
+            'template_name': 'blog/login.html',
+            'authentication_form': BootstrapAuthenticationForm,
+            'extra_context':
+            {
+                'title':'Log in',
+                
+            }
+        },
+        name='login'),
+    url(r'^logout$',
+        'django.contrib.auth.views.logout',
+        {
+            'next_page': '/',
+        },
+        name='logout'),
+	
+	
     url(r'^admin/', admin.site.urls),
+	#url(r'^home', views.index, name='index'),
+	url(r'^about', views.about, name='about'),
+	url(r'^contact', views.contact, name='contact'),
+	
+	url(r'^',include('blog.urls')),
 ]

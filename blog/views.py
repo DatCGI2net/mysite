@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
 
+
 def index(request):
 	#return HttpResponse("Hello, world. You're at the polls index.")
 	latest_post_list=Post.objects.order_by('-pub_date')[:5]
@@ -70,13 +71,22 @@ def login_user(request):
 	
 	url = request.GET['next']
 	if not url:
-		url=request.path
+		url='/'
 		
 	return render(request,'blog/login.html', {'url': url})
 	
 def logout_user(request):
 	logout(request)
 	return render(request,'blog/login.html')
+	
+def about(request):
+
+	pass
+	
+def contact(request):
+
+	pass
+	
 	
 	
 	
