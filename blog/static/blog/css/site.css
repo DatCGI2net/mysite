@@ -40,3 +40,7 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+.navbar-inverse {
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+}
