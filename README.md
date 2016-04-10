@@ -6,6 +6,8 @@ My simple django project for experience:
 		Login/Logout
 		Template with simple html pages
 		
+		Added the test script for jenkins
+		
 		To do:
 			Add angularjs on client side and django will as as backend
 			
