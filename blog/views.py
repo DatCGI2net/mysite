@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate,login,logout
 import re
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-
+from blog.forms import BootstrapAuthenticationForm
 
 
 def index(request):
@@ -36,7 +36,7 @@ def comment(request,post_id):
 		comment = Comment()
 		profile = Profile.objects.get(pk=request.user.id)
 		comment.commenter=profile
-		comment.comments=request.POST['comments']
+		comment.comments=request.POST.get('comments')
 		comment.post=post
 		comment.comment_date=timezone.now()
 		comment.save()
@@ -46,15 +46,16 @@ def comment(request,post_id):
 def login_user(request):
 	if(len(request.POST)):
 	
-		username=request.POST['username']
-		password=request.POST['password']
+		username=request.POST.get('username')
+		password=request.POST.get('password')
 		user=authenticate(username=username,password=password)
 		if user is not None:
 			if user.is_active:
 				login(request,user)
 				## redirect_to
-				url=request.POST['url']
-				if url:
+				url="/"
+				if request.POST.get('next'):
+					url=request.POST.get('next')
 					if "login" in url:
 						url="/blog/"
 						
@@ -65,15 +66,13 @@ def login_user(request):
 				return redirect(url)
 				
 			else:
-				return render(request,'blog/login.html',{error: 'disabled'})
+				return render(request,'blog/login.html',{'error': 'disabled'})
 		else:
-			return render(request,'blog/login.html',{error: 'invalid account'})
+			return render(request,'blog/login.html',{'error': 'invalid account'})
 	
-	url = request.GET['next']
-	if not url:
-		url='/'
+	form = BootstrapAuthenticationForm()
 		
-	return render(request,'blog/login.html', {'url': url})
+	return render(request,'blog/login.html', {'form':form})
 	
 def logout_user(request):
 	logout(request)
