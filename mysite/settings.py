@@ -125,3 +125,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_INDEX_TABLESPACE = 'tablespaces'
 
+SUB_SITE = '/'
