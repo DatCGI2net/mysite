@@ -20,7 +20,7 @@ class Category(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return "/category/%s/" % self.name
+        return "category/%s/" % self.name
     
     
 class Tag(models.Model):
@@ -29,7 +29,7 @@ class Tag(models.Model):
     
     
     def get_absolute_url(self):
-        return "/tag/%s/" % self.name     
+        return "tag/%s/" % self.name     
     
     def __str__(self):
         
