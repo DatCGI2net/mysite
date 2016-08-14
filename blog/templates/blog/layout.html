@@ -36,6 +36,20 @@
 {% block content %}{% endblock %}
         <hr/>
         <footer>
+        {%if category_list%}
+        <div class="row">
+        {% for cat in category_list%}
+        
+        <div class="col-md-4 col-sm-6 col-xs-12">
+        <a href="{{post.category.get_absolute_url}}" class="btn btn-info btn-md">{{cat.name}}</a>
+        </div>
+        
+        {%endfor%}
+        </div>
+        
+        {%endif%}
+        
+        
             <p>&copy; {% now "Y" %} - My Blog</p>
         </footer>
     </div>

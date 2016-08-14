@@ -2,6 +2,7 @@
 {%block content%}
 <div class="post">
 <h1>{{post.title}}</h1>
+<div class="">By {{post.poster.user.username}} - {{post.pub_date}}</div>
 <div class="desc">
 {{post.text}}
 </div>
@@ -16,7 +17,7 @@
 
 {%endif%}
 <div class="comment">
-{%if user.is_authenticated %}
+{%if user.is_authenticated and user.username == 'mrdat'%}
 <form action="{%url 'comment' post.id%}" method=post>
 {%csrf_token%}
 <textarea cols=10 rows=4 name="comments"></textarea>
