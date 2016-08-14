@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.safestring import SafeUnicode
+from django.conf import settings
 
 
 class Profile(models.Model):
@@ -20,7 +21,8 @@ class Category(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return "category/%s/" % self.name
+        
+        return "{0}category/{1}/".format(settings.SUB_SITE,self.name)
     
     
 class Tag(models.Model):
@@ -29,7 +31,7 @@ class Tag(models.Model):
     
     
     def get_absolute_url(self):
-        return "tag/%s/" % self.name     
+        return "{0}tag/{1}/".format(settings.SUB_SITE, self.name)     
     
     def __str__(self):
         
