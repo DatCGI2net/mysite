@@ -6,6 +6,15 @@
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
+        
+        {% if error %}
+    <ul class='text text-danger'>
+       
+            <li>{{ error }}</li>
+       
+    </ul>
+{% endif %}
+        
             <form action="." method="post" class="form-horizontal">
                 {% csrf_token %}
                 <h4>Use a local account to log in.</h4>
@@ -44,7 +53,8 @@
 
 {% block scripts %}
 
-    {% load staticfiles %}
+{% load staticfiles %}
+<!--  
 <script src="{% static 'blog/scripts/jquery.validate.min.js' %}"></script>
-
+-->
 {% endblock %}

@@ -109,6 +109,8 @@ def comment(request,post_id):
     return redirect(post)
     
 def login_user(request):
+    
+    error_str = ""
     if(len(request.POST)):
     
         username=request.POST.get('username')
@@ -131,17 +133,20 @@ def login_user(request):
                 return redirect(url)
                 
             else:
-                return render(request,'blog/login.html',{'error': 'disabled'})
+                ##return render(request,'blog/login.html',{'error': 'disabled'})
+                error_str ='disabled'
         else:
-            return render(request,'blog/login.html',{'error': 'invalid account'})
+            ##return render(request,'blog/login.html',{'error': 'invalid account'})
+            error_str ='invalid account'
     
     form = BootstrapAuthenticationForm()
         
-    return render(request,'blog/login.html', {'form':form})
+    return render(request,'blog/login.html', {'form':form, 'error': error_str})
     
 def logout_user(request):
     logout(request)
-    return render(request,'blog/login.html')
+    form = BootstrapAuthenticationForm()
+    return render(request,'blog/login.html', {'form':form, 'error': 'Please input your username and password'})
     
 def about(request):
 
