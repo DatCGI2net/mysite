@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.safestring import SafeUnicode
 from django.conf import settings
+from tinymce.models import HTMLField
 
 
 class Profile(models.Model):
@@ -40,7 +41,8 @@ class Tag(models.Model):
 class Post(models.Model):
     poster = models.ForeignKey('Profile', on_delete = models.CASCADE,)
     title = models.CharField(max_length =100, null = False)
-    text  = models.TextField()
+    #text  = models.TextField()
+    text = HTMLField()
     pub_date=models.DateTimeField('date publish')
     slug = models.SlugField(max_length=40, unique=True)
     isPage = models.BooleanField(default=False)

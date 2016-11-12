@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'django_wysiwyg',
+    'tinymce',
     
 ]
 
@@ -126,3 +127,8 @@ STATIC_URL = '/static/'
 DEFAULT_INDEX_TABLESPACE = 'tablespaces'
 
 SUB_SITE = '/'
+
+POST_PER_HOMEPAGE = 5
+ROW_PER_PAGE = 10
+
+DJANGO_WYSIWYG_FLAVOR = "tinymce"    # or "tinymce_advanced"

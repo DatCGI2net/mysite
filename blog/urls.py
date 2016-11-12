@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 #from django.contrib.auth import views as auth_views
 
@@ -14,7 +14,7 @@ url(r'(?P<postSlug>[a-zA-Z0-9\-_]+)/$', views.getPost, name='detail'),
 url(r'^(?P<post_id>[0-9]+)/comments/$', views.comments, name='comments'),
 url(r'^(?P<post_id>[0-9]+)/comment/$', views.comment, name='comment'),
 
-
+url(r'^tinymce/', include('tinymce.urls')),
 url(r'^blog/?$', views.index, name='home'),
 
 

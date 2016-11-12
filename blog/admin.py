@@ -19,6 +19,7 @@ admin.site.register(Comment)
 
 class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
+    change_form_template = 'blog/admin/change_form.html'
     
     
 admin.site.register(Post, PostAdmin)

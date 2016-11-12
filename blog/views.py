@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from blog.forms import BootstrapAuthenticationForm
 from django.views.generic.list import ListView
-
+from django.conf import settings
+from django.core.paginator import Paginator
 
 class CategoryView(ListView):
     
@@ -61,11 +62,20 @@ def _get_category_list():
     
 def index(request):
     #return HttpResponse("Hello, world. You're at the polls index.")
-    latest_post_list=Post.objects.order_by('-pub_date')[:5]
+    latest_post_list=Post.objects.order_by('-pub_date')
+    
+    paginator = Paginator(latest_post_list, settings.POST_PER_HOMEPAGE)
+    page = int(request.GET.get('page', 1))
+    
+    latest_post_list = paginator.page(page)
+    
+    
     ##template=loader.get_template('blog/index.html')
     context={
         'latest_post_list': latest_post_list,
         'category_list': _get_category_list(),
+        
+        
     }
     return render(request,'blog/index.html',context)
     

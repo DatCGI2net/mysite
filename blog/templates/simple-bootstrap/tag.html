@@ -1,0 +1,32 @@
+{%extends 'blog/layout.html'%}
+{%block content%}
+
+
+<div class="row">
+    
+
+{% if object_list %}
+
+{% for post in object_list %}
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <h4 class="col-md-12">
+    <a href="/blog/{{post.slug}}">{{post.title}}</a> ( {{ post.pub_date }}  By {{post.poster.user.username}})
+    
+    
+    </h4>
+    <div>{{ post.text|truncatechars:50 }}</div>
+    <div>Posted in 
+    <a href="{{ post.category.get_absolute_url }}"><span class="label label-primary">{{ post.category.name }}</span></a>
+    </div>
+    
+</div>
+{%endfor%}
+
+{%else%}
+<p>No posts available.</p>
+{%endif%}
+</div>
+
+
+
+{%endblock%}
