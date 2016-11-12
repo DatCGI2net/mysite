@@ -1,2 +1,5 @@
 *.pyc
+blog/*.pyc
+mysite/*.pyc
+settings/*.pyc
 db.sqlite3
