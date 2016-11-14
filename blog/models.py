@@ -49,6 +49,14 @@ class Post(models.Model):
     category = models.ForeignKey(Category)
     tags = models.ManyToManyField(Tag)
     
+    def save(self, force_insert=False, force_update=False, using=None, 
+        update_fields=None):
+        
+        print 'this update_fields:', update_fields
+        
+        super(Post, self).save()
+        
+    
     
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)

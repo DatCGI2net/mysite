@@ -3,6 +3,9 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from .models import Post,Comment,Profile, Category, Tag
 from django.contrib.admin.templatetags.admin_modify import prepopulated_fields_js
+#from django.contrib.flatpages.admin import FlatPageAdmin
+#from django.contrib.flatpages.models import FlatPage
+
 
 class ProfileInline(admin.StackedInline):
 	model = Profile
@@ -16,6 +19,9 @@ class UserAdmin(BaseUserAdmin):
 admin.site.unregister(User)
 admin.site.register(User,UserAdmin)
 admin.site.register(Comment)
+
+
+
 
 class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
