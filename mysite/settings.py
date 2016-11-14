@@ -131,7 +131,7 @@ SUB_SITE = '/'
 POST_PER_HOMEPAGE = 5
 ROW_PER_PAGE = 10
 
-DJANGO_WYSIWYG_FLAVOR = "tinymce"    # or "tinymce_advanced"
+DJANGO_WYSIWYG_FLAVOR = "tinymce_advanced"
 
 DJANGO_WYSIWYG_MEDIA_URL = STATIC_URL + "tinymce/"
 

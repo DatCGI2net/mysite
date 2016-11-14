@@ -3,7 +3,7 @@
   <p class="blog-post-meta">{{ post.pub_date }} by <a href="#">{{post.poster.user.username}}</a></p>
 
   <p>
-  {{ post.text | safe }}
+  {{ post.text | truncatewords_html:20| safe }}
   </p>
   <hr>
   <h3>Category</h3>
